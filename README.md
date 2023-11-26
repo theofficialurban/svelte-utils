@@ -37,11 +37,11 @@ Wrapper for a form control
 
 ### CSS Variables
 
-`--from` From Gradient Color
-`--to` To Gradient Color
-`--size` Font Size
-`--weight` Font Weight
-`--font` Font Family
+- `--from` From Gradient Color
+- `--to` To Gradient Color
+- `--size` Font Size
+- `--weight` Font Weight
+- `--font` Font Family
 
 ```html
 <script lang="ts">
