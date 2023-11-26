@@ -14,6 +14,12 @@ The body of the form, the same as `<form>`
 
 Wrapper for a form control
 
+### Form.Input
+
+### Form.Textarea
+
+### Form.Select
+
 ## Example
 
 ```html
@@ -28,6 +34,14 @@ Wrapper for a form control
 ```
 
 ## Gradient Text
+
+### CSS Variables
+
+`--from` From Gradient Color
+`--to` To Gradient Color
+`--size` Font Size
+`--weight` Font Weight
+`--font` Font Family
 
 ```html
 <script lang="ts">
