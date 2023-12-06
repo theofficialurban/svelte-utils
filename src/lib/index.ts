@@ -7,6 +7,7 @@ import FormTextarea from './components/Form/form-textarea.svelte';
 import GradientText from './components/GradientText/gradient-text.svelte';
 import floatEffect from './utils/Float.js';
 import Table from './components/Table/table.svelte';
+import ConfirmationButton from './components/ConfirmationButton/confirmation-button.svelte';
 import type TableColumn from './types/Table.js';
 const Form = {
 	Body: FormBody,
@@ -17,5 +18,6 @@ const Form = {
 };
 export { GradientText, floatEffect as FloatEffect };
 export { Table };
+export { ConfirmationButton };
 export type { TableColumn };
 export default Form;
