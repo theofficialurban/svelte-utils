@@ -69,3 +69,52 @@ Wrapper for a form control
 	title()} .... {/snippet}
 </table>
 ```
+
+## ConfirmationButton
+
+**Confirmation Event** (fired on confirmation)
+
+`onconfirm` - `(id: string, e: ClickEvent) => Promise<void> | void`
+
+**Decline Event** (fired on cancel / decline)
+
+`ondecline` - `(id: string, e: ClickEvent) => Promise<void> | void`
+
+```html
+<script lang="ts">
+	import { ConfirmationButton } from '@theofficialurban/svelte-utils';
+</script>
+
+<ConfirmationButton text="Please Confirm Your Choice" onconfirm="{..}" ondecline="{..}">
+	Delete
+</ConfirmationButton>
+```
+
+## SVGBounce
+
+### Properties
+
+- `extends SVGAttributes` (width, height, etc..)
+- `springOpts?: SpringOpts`
+- `bounceDistance?: number` - PX translate for bounce effect
+- `css?: CSSFunction` `(node: SVGElement, bStore: Spring<number>, bVal: number) => string;` (Should return the style string)
+- `trigger?: [inEvent: string, outEvent: string]` (`['pointerenter', 'pointerleave']`)
+
+```html
+<script lang="ts">
+	import { SVGBounce } from '@theofficialurban/svelte-utils';
+	const cssFn = (n, s, v) => {
+		return `translate: translateY(${v}px);`;
+	};
+</script>
+
+<SVGBounce css="{cssFn}">
+	<path
+		transition:draw
+		stroke="blue"
+		stroke-width="{3}"
+		d="M807.7 951h-449V192L643.8 87l163.9 105z"
+		fill="#F7D4FF"
+	></path>
+</SVGBounce>
+```
