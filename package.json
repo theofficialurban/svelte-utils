@@ -13,6 +13,7 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
+	"repository": "https://github.com/theofficialurban/svelte-utils",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
