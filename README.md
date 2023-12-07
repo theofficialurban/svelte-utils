@@ -118,3 +118,16 @@ Wrapper for a form control
 	></path>
 </SVGBounce>
 ```
+
+## `useFloatingEffect(opts: TweenedOpts, translateX: number)`
+
+### Example
+
+```html
+<script lang="ts">
+	import { useFloatingEffect } from '@theofficialurban/svelte-utils';
+	const { effect, store } = useFloatingEffect();
+</script>
+
+<svg use:effect="{$store}"></svg>
+```

@@ -10,6 +10,7 @@ import Table from './components/Table/table.svelte';
 import ConfirmationButton from './components/ConfirmationButton/confirmation-button.svelte';
 import SVGBounce from './components/SVG/svg-parent.svelte';
 import type TableColumn from './types/Table.js';
+import useFloatingEffect from './utils/FloatEffect.js';
 const Form = {
 	Body: FormBody,
 	Control: FormControl,
@@ -18,6 +19,7 @@ const Form = {
 	Textarea: FormTextarea
 };
 export { GradientText, floatEffect as FloatEffect };
+export { useFloatingEffect };
 export { Table };
 export { ConfirmationButton };
 export { SVGBounce };
