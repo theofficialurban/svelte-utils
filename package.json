@@ -13,6 +13,9 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/"
+	},
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
