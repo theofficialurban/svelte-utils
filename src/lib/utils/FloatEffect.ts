@@ -1,6 +1,6 @@
 import { tweened, type TweenedOptions } from 'svelte/motion';
 
-const useFloatingEffect = <T extends SVGElement = SVGElement>(
+const useFloatingEffect = <T extends Element = Element>(
 	opts: TweenedOptions<number> = {
 		duration: 1000
 	},
