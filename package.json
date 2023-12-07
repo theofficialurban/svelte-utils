@@ -13,7 +13,6 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
-	"repository": "https://github.com/theofficialurban/svelte-utils",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -51,7 +50,6 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"@theofficialurban/svelte-utils": "1.0.5",
 		"lodash": "^4.17.21",
 		"lodash-es": "^4.17.21"
 	}
