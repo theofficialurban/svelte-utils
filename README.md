@@ -131,3 +131,42 @@ Wrapper for a form control
 
 <svg use:effect="{$store}"></svg>
 ```
+
+## Modal Async. Rendering `Modal`
+
+### `Modal.Wrapper`
+
+Provides loading for a promise
+
+**Props**
+
+- `promise` - Promise to await
+
+**Slots**
+
+- `loading` - Loading
+
+### `Modal.List`
+
+**Props**
+`modal` - An array (may require cast for TS)
+
+**Slots (Snippets)**
+
+- `children(item: T[])`
+
+```html
+<script lang="ts">
+	import { Modal } from '@theofficialurban/svelte-utils';
+</script>
+
+// Slot: loading // Value = Promise Awaited Return
+<Modal.Wrapper {promise} let:value>
+	<span slot="loading">Loading....</span>
+	<Modal.List modal="{value" as ({name: string}[])}>
+		{#snippet children(item: {name: string})}
+		<li>{item.name}</li>
+		{/snippet}
+	</Modal.List>
+</Modal.Wrapper>
+```

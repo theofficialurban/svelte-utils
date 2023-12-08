@@ -11,6 +11,9 @@ import ConfirmationButton from './components/ConfirmationButton/confirmation-but
 import SVGBounce from './components/SVG/svg-parent.svelte';
 import type TableColumn from './types/Table.js';
 import useFloatingEffect from './utils/FloatEffect.js';
+import AsyncModal from './components/Wrappers/async-modal.svelte';
+import ModalList from './components/Wrappers/modal-list.svelte';
+
 const Form = {
 	Body: FormBody,
 	Control: FormControl,
@@ -18,6 +21,11 @@ const Form = {
 	Select: FormSelect,
 	Textarea: FormTextarea
 };
+const Modal = {
+	Wrapper: AsyncModal,
+	List: ModalList
+};
+export { Modal };
 export { GradientText, floatEffect as FloatEffect };
 export { useFloatingEffect };
 export { Table };
