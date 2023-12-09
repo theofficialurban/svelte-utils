@@ -1,5 +1,5 @@
 <script lang="ts">
-	type T = Record<string, unknown> | Array<unknown>;
+	type T = Iterable<unknown>;
 	interface $$props {
 		promise: Promise<T>;
 	}

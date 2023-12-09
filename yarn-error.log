@@ -1,0 +1,84 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\joshu\AppData\Local\node\corepack\yarn\1.22.19\bin\yarn.js
+
+PATH: 
+  C:\Users\joshu\AppData\Local\cloud-code\installer\google-cloud-sdk\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Mullvad VPN\resources;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;%NVM_HOME%;%NVM_SYMLINK%;C:\Users\joshu\AppData\Local\Programs\Python\Launcher\;C:\Users\joshu\AppData\Local\pnpm;C:\Users\joshu\AppData\Local\Microsoft\WindowsApps;C:\Users\joshu\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\heroku\bin;C:\Users\joshu\AppData\Local\GitHubDesktop\bin;C:\Users\joshu\.deno\bin;C:\Users\joshu\AppData\Roaming\npm;C:\Users\joshu\AppData\Roaming\nvm;C:\Program Files\nodejs
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  20.8.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile 'C:\Users\joshu\AppData\Local\Yarn\Cache\v6\npm-glob-parent-6.0.2-6d237d99083950c79290f24c7642a3de9a28f9e3-integrity\node_modules\glob-parent\LICENSE' -> 'D:\Programming\svelte-utils\node_modules\eslint\node_modules\glob-parent\LICENSE'
+
+npm manifest: 
+  {
+  	"name": "@theofficialurban/svelte-utils",
+  	"version": "1.1.1",
+  	"scripts": {
+  		"dev": "vite dev",
+  		"build": "vite build && npm run package",
+  		"preview": "vite preview",
+  		"package": "svelte-kit sync && svelte-package && publint",
+  		"prepublishOnly": "npm run package",
+  		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+  		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+  		"test": "vitest",
+  		"lint": "prettier --check . && eslint .",
+  		"format": "prettier --write ."
+  	},
+  	"publishConfig": {
+  		"registry": "https://registry.npmjs.org/"
+  	},
+  	"exports": {
+  		".": {
+  			"types": "./dist/index.d.ts",
+  			"svelte": "./dist/index.js"
+  		}
+  	},
+  	"files": [
+  		"dist",
+  		"!dist/**/*.test.*",
+  		"!dist/**/*.spec.*"
+  	],
+  	"peerDependencies": {
+  		"svelte": "^5.0.0-next.8"
+  	},
+  	"devDependencies": {
+  		"@sveltejs/adapter-auto": "^2.0.0",
+  		"@sveltejs/kit": "^1.27.4",
+  		"@sveltejs/package": "^2.0.0",
+  		"@typescript-eslint/eslint-plugin": "^6.0.0",
+  		"@typescript-eslint/parser": "^6.0.0",
+  		"eslint": "^8.28.0",
+  		"eslint-config-prettier": "^9.0.0",
+  		"eslint-plugin-svelte": "^2.30.0",
+  		"prettier": "^3.0.0",
+  		"prettier-plugin-svelte": "^3.0.0",
+  		"publint": "^0.1.9",
+  		"svelte": "^5.0.0-next.8",
+  		"svelte-check": "^3.6.0",
+  		"tslib": "^2.4.1",
+  		"typescript": "^5.0.0",
+  		"vite": "^4.4.2",
+  		"vitest": "^0.34.0"
+  	},
+  	"svelte": "./dist/index.js",
+  	"types": "./dist/index.d.ts",
+  	"type": "module",
+  	"dependencies": {
+  		"lodash": "^4.17.21",
+  		"lodash-es": "^4.17.21"
+  	}
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

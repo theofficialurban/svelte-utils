@@ -1,18 +1,13 @@
 <script lang="ts">
-	import SvgFloating from '$lib/components/SVG/svg-floating.svelte';
-	import SvgParent from '$lib/components/SVG/svg-parent.svelte';
-	import { Modal } from '$lib/index.js';
-	let modal = [{ name: 'Josh' }, { name: 'Sorber' }];
-	const promise = new Promise<Array<{ name: string }>>((res) => {
-		setTimeout(() => res(modal), 5000);
-	});
+	import Dialog from '$lib/components/Dialog/dialog.svelte';
+	import Tooltip from '$lib/components/Tooltip/tooltip.svelte';
+	import typewriter from '$lib/utils/Typewriter.js';
+	import { onMount } from 'svelte';
+	import { get } from 'svelte/store';
+	let show = $state<boolean>(false);
+	onMount(() => (show = true));
 </script>
 
-<Modal.Wrapper {promise} let:value>
-	<span slot="loading">Loading....</span>
-	<Modal.List modal={value as ({name: string}[])}>
-		{#snippet children(item: {name: string})}
-			<li>{item.name}</li>
-		{/snippet}
-	</Modal.List>
-</Modal.Wrapper>
+{#if show}
+	<div transition:typewriter={{ speed: 1 }}>Hello World!</div>
+{/if}

@@ -13,7 +13,7 @@ import type TableColumn from './types/Table.js';
 import useFloatingEffect from './utils/FloatEffect.js';
 import AsyncModal from './components/Wrappers/async-modal.svelte';
 import ModalList from './components/Wrappers/modal-list.svelte';
-
+import typewriter from './utils/Typewriter.js';
 const Form = {
 	Body: FormBody,
 	Control: FormControl,
@@ -25,6 +25,7 @@ const Modal = {
 	Wrapper: AsyncModal,
 	List: ModalList
 };
+export { typewriter };
 export { Modal };
 export { GradientText, floatEffect as FloatEffect };
 export { useFloatingEffect };
