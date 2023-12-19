@@ -1,13 +1,10 @@
 <script lang="ts">
-	import type { PropsWithChildren, Snippet } from 'svelte';
-	type T = $$Generic<Record<string, unknown>>;
 	interface $$props {
-		modal: T[];
-		children: Snippet<T>;
+		modal: Record<string, unknown>[];
 	}
-	let { children, modal } = $props<PropsWithChildren<$$props, {}>>();
+	let { modal } = $props<$$props>();
 </script>
 
 {#each modal as item}
-	{@render children(item)}
+	<slot {item} />
 {/each}

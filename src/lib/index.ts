@@ -1,6 +1,8 @@
 // Reexport your entry components here
 import FormBody from '$lib/components/Form/form-body.svelte';
 import FormControl from '$lib/components/Form/form-control.svelte';
+import Dialog from './components/Dialog/dialog.svelte';
+import Tooltip from './components/Tooltip/tooltip.svelte';
 import FormInput from './components/Form/form-input.svelte';
 import FormSelect from './components/Form/form-select.svelte';
 import FormTextarea from './components/Form/form-textarea.svelte';
@@ -25,7 +27,8 @@ const Modal = {
 	Wrapper: AsyncModal,
 	List: ModalList
 };
-export { typewriter };
+
+export { typewriter, Tooltip, Dialog };
 export { Modal };
 export { GradientText, floatEffect as FloatEffect };
 export { useFloatingEffect };
