@@ -16,6 +16,7 @@ import useFloatingEffect from './utils/FloatEffect.js';
 import AsyncModal from './components/Wrappers/async-modal.svelte';
 import ModalList from './components/Wrappers/modal-list.svelte';
 import typewriter from './utils/Typewriter.js';
+import TableOfContents from './components/TableOfContents/table-of-contents.svelte';
 const Form = {
 	Body: FormBody,
 	Control: FormControl,
@@ -27,7 +28,7 @@ const Modal = {
 	Wrapper: AsyncModal,
 	List: ModalList
 };
-
+export { TableOfContents };
 export { typewriter, Tooltip, Dialog };
 export { Modal };
 export { GradientText, floatEffect as FloatEffect };
