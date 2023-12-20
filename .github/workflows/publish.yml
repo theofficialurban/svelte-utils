@@ -15,4 +15,5 @@ jobs:
         with:
           node-version: 20
       - run: npm i -g pnpm
+      - run: pnpm i
       - run: pnpm publish
