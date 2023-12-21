@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {} from '@melt-ui/svelte';
-	import { createTableOfContents } from '../../../../node_modules/@melt-ui/svelte/dist/builders/table-of-contents/create.js';
-	import type { CreateTableOfContentsArgs } from '../../../../node_modules/@melt-ui/svelte/dist/builders/table-of-contents/types.js';
+	import { createTableOfContents } from '@melt-ui/svelte';
+	import type { CreateTableOfContentsArgs } from '@melt-ui/svelte';
 	import TocTree from './toc-tree.svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Snippet } from 'svelte';

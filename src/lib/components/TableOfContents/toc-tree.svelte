@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { TableOfContentsItem } from '../../../../node_modules/@melt-ui/svelte/dist/builders/table-of-contents/types.js';
-	import { createTableOfContents } from '../../../../node_modules/@melt-ui/svelte/dist/builders/table-of-contents/create.js';
+	import type { TableOfContentsItem } from '@melt-ui/svelte';
+	import { createTableOfContents } from '@melt-ui/svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Snippet } from 'svelte';
 	type TableOfContents = ReturnType<typeof createTableOfContents>;
