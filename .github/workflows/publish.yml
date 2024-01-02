@@ -1,8 +1,8 @@
 name: Publish Package to Github Packages
 
 on:
-  push:
-    branches: [main, master]
+  release:
+    types: [created]
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: 'https://npm.pkg.github.com'
+          registry-url: 'https://registry.npmjs.org/'
           scope: '@theofficialurban'
 
       - name: Install PNPM
@@ -28,15 +28,6 @@ jobs:
 
       - name: Run Svelte Check
         run: pnpm run check
-
-      - name: Publish Package
-        if: ${{ !env.ACT }}
-        run: pnpm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Switch to NPM Repo
-        if: ${{ !env.ACT }}
-        run: pnpm config set @theofficialurban:registry=https://registry.npmjs.org/
 
       - name: Publish to NPM
         if: ${{ !env.ACT }}
