@@ -20,6 +20,9 @@
 			"svelte": "./dist/index.js"
 		}
 	},
+	"repository": {
+		"url": "https://github.com/theofficialurban/svelte-utils"
+	},
 	"files": [
 		"dist",
 		"!dist/**/*.test.*",
