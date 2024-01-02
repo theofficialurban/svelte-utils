@@ -5,7 +5,6 @@ node_modules
 /.svelte-kit
 /package
 .env
-.npmrc
 .env.*
 event.json
 !.env.example
