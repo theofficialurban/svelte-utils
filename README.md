@@ -1,96 +1,279 @@
-# Internal Svelte Utility Functions
+A compilation of useful components and other utilities. This package is intended for myself and not really intended to be anything concrete, I will be happy to fix anything or even take some requests if asked.
 
-# Documentation
+## Components & Utilities
 
-## Form
+- `ConfirmationButton` - A barebones confirmation button
+- **`Form` Component** - A Form Wrapper
+- **`Table` Component** - Table component
 
-Form.Body -> Form.Control -> Form.(Input/Textarea/Select)
+## Table Component
 
-### Form.Body
+### Props
 
-The body of the form, the same as `<form>`
+- `rows: T[]` - Table Rows `extends Record<string,unknown>`
+- `columns: TableColumn<T>` - Table Columns
 
-### Form.Control
+### Snippets
 
-Wrapper for a form control
+- `cell: Snippet<{row: T, column: TableColumn<T>}>` - A snippet for each cell
+- `cols: Snippet<TableColumn<T>>` - Snippet for each header
+- `label: Snippet<null>` - Label for the table
 
-### Form.Input
+### Slots
 
-### Form.Textarea
+- `thead` - Table Head gets `columns` passed
+- `default` - Table Body
+- `tfoot` - Table Footer
 
-### Form.Select
+```html
+<script lang="ts">
+    import { Table } from '@theofficialurban/svelte-utils';
+    import type { TableColumn } from '@theofficialurban/svelte-utils';
+    // Rows can have any Record<string, unknown> Shape
+    type Row = { name: string; city: string };
+    const rows: Row[] = [
+        { name: 'Josh', city: 'Los Angeles' },
+        { name: 'Dave', city: 'Portland' }
+    ];
 
-## Example
+    const columns: TableColumn<Row>[] = [
+        // Column #1 'Name' for 'name' key
+        { title: 'Name', key: 'name' },
+        // Column #2 'City' for 'city' key
+        { title: 'City', key: 'city' }
+    ];
+</script>
+<!-- Then just pass these to the component -->
+<Table {rows} {columns}>
+
+    <!-- Data Object = {row: Row, column: Column} -->
+
+    {#snippet cell({row, column}: {row: Row, column: TableColumn<Row>})}
+        <td>{row[column.key]}</td>
+    {/snippet}
+
+    <!-- Column gets passed the 'Column' object -->
+
+    {#snippet cols(col: TableColumn<Row>)}
+        <th>{col.title}</th>
+    {/snippet}
+
+</Table>
+```
+
+## Form Component
+
+A simple wrapper for async forms with Svelte's built in `use:enhance`
+
+**Components**:
+
+- `Body` - Form Body
+- `Control` - Input Control
+- `Input` - A form input
+- `Select` - Form Select
+- `Textarea` - Form Textarea
+
+```ts
+import Form from '@theofficialurban/svelte-utils';
+```
+
+### `Form.Body`
+
+Top Level Wrapper
+
+**Props `extends HTMLFormAttributes`**:
+
+- `form?: ActionResult | null` - The `form` return from page props for `use:enhance`
+- `submitFn?: SubmitFunction | undefined` - A custom function to be passed to `use:enhance={submitFn}`
+
+**Slots**:
+
+- `title` - Form Title Slot
+- `default` - Inside slot for the form
+- `submit` - Submit Button Slot
+
+**Example**
+
+```html
+<Form.Body method="POST" action="/" {form}>
+	<Form.Control>
+		<label slot="label">My Label</label>
+		<Form.Input name="inputName" id="inputId" />
+	</Form.Control>
+	<!-- Submit Button Added Automatically Unless Overwritten -->
+</Form.Body>
+```
+
+### `Form.Control`
+
+A control for an input, includes a slot for a label
+
+**Props `extends HTMLDivAttributes`**:
+
+- Extends Default HTMLDivAttributes
+
+**Slots**:
+
+- `label` - Label Slot
+
+See Above Example
+
+### `Form.Select`
+
+A form select input element
+
+**Props `extends HTMLSelectAttributes`**:
+
+- `options: T[]` - Options, `T extends Record<string,unknown>`
+- `displayKey: keyof T` - Key to display
+- `valueKey: keyof T` - Key for the option value
+  **No Slots**
+
+**Example**:
+
+```html
+<script lang="ts">
+	import Form from '@theofficialurban/svelte-utils';
+	type Option = { name: string; city: string };
+	let options: Option[] = [{ name: 'Josh', city: 'Los Angeles' }];
+</script>
+<Form.Body ...>
+	<Form.Control>
+		<label slot="label">My Select</label>
+		<!-- Option #1 - Display: Josh, Value: Los Angeles -->
+		<Form.Select {options} displayKey="name" valueKey="city" />
+	</Form.Control>
+</Form.Body>
+```
+
+### `Form.Input`
+
+**Props `extends HTMLInputAttributes`**
+
+**Example**
 
 ```html
 <script lang="ts">
 	import Form from '@theofficialurban/svelte-utils';
 </script>
-<Form.Body method="POST">
+<Form.Body ...>
 	<Form.Control>
-		<Form.Input name="input" type="text" />
+		<label slot="label">My Input</label>
+		<Form.Input name=".." id=".." placeholder=".." />
 	</Form.Control>
 </Form.Body>
 ```
 
-## Gradient Text
+### `Form.Textarea`
 
-### CSS Variables
+**Props `extends HTMLTextareaAttributes`**
 
-- `--from` From Gradient Color
-- `--to` To Gradient Color
-- `--size` Font Size
-- `--weight` Font Weight
-- `--font` Font Family
+- `toggleHTML?: boolean` - Toggleable HTML Preview
+
+**Slots**
+
+- `default` - Textarea
+- `preview` - HTML Preview
+
+```html
+<script lang="ts">
+	import Form from '@theofficialurban/svelte-utils';
+</script>
+<Form.Body ...>
+	<Form.Control>
+		<label slot="label">My Input</label>
+		<Form.Textarea name=".." id=".." placeholder=".." />
+	</Form.Control>
+</Form.Body>
+```
+
+## `GradientText`
+
+A simple Gradient Text Component
+
+**Props**
+
+- `element`
+  - span
+  - h1
+  - h2
+  - h3
+  - p
+  - div
+- `--size` = `font-size`
+- `--weight` = `font-weight`
+- `--from` `--to` = Stop 1 and Stop 2
+- `--font` = `font-family`
 
 ```html
 <script lang="ts">
 	import { GradientText } from '@theofficialurban/svelte-utils';
 </script>
-<GradientText element="span" --from="" --to="">Text</GradientText>
+
+<GradientText element="span" --from="red" --to="blue"> Hello World </GradientText>
 ```
 
-## Table
+## `ConfirmationButton`
 
-### Snippets
+**Types**
 
-- `cell`
-  - `{column, row}`
-- `cols`
-  - `{key, title}`
-- `tableTitle`
-
-```html
-<script lang="ts">
-	import { Table } from '@theofficialurban/svelte-utils';
-</script>
-<table rows="{}" columns="{}">
-	{#snippet cell({row, column})} .... {/snippet} {#snippet column(col)} .... {/snippet} {#snippet
-	title()} .... {/snippet}
-</table>
+```ts
+type ClickEvent = MouseEvent & { currentTarget: EventTarget & HTMLButtonElement };
+type OnConfirm = (itemId: string, e: ClickEvent) => Promise<void> | void;
+type OnDecline = (itemId: string, e: ClickEvent) => Promise<void> | void;
 ```
 
-## ConfirmationButton
+**Props**
 
-**Confirmation Event** (fired on confirmation)
+- `onconfirm` - On Confirm Event
+- `ondecline` - On Decline Event
+- `text` - Prompt Text
 
-`onconfirm` - `(id: string, e: ClickEvent) => Promise<void> | void`
-
-**Decline Event** (fired on cancel / decline)
-
-`ondecline` - `(id: string, e: ClickEvent) => Promise<void> | void`
+**Example**
 
 ```html
 <script lang="ts">
 	import { ConfirmationButton } from '@theofficialurban/svelte-utils';
 </script>
-
-<ConfirmationButton text="Please Confirm Your Choice" onconfirm="{..}" ondecline="{..}">
-	Delete
-</ConfirmationButton>
+<ConfirmationButton text="Please Confirm"> Click Me </ConfirmationButton>
 ```
 
-## SVGBounce
+## Typewriter Effect
+
+```ts
+import { typewriter } from '@theofficialurban/svelte-utils';
+```
+
+## Float Effect
+
+**Parameters**
+
+- `options: TweenedOptions<number>` - Options for the tween
+- `floatDistance: number` = The distance for the bounce (usually -10 works)
+
+**Types**
+
+```ts
+export type FloatEffect<T extends Element = Element> = (
+	options: TweenedOptions<number>,
+	floatDistance: number
+) => FloatEffectReturn<T>;
+
+export type FloatEffectReturn<T extends Element = Element> = {
+	effect: Action<T, number>;
+	store: Tweened<number>;
+};
+```
+
+```html
+<script lang="ts">
+	import { useFloatingEffect } from '@theofficialurban/svelte-utils';
+	const { effect, store } = useFloatingEffect({ duration: 1000 }, -10);
+</script>
+<div use:effect="{$store}">Floating Effect</div>
+```
+
+## `SVGBounce`
 
 ### Properties
 
@@ -107,8 +290,8 @@ Wrapper for a form control
 		return `translate: translateY(${v}px);`;
 	};
 </script>
-
 <SVGBounce css="{cssFn}">
+	   
 	<path
 		transition:draw
 		stroke="blue"
@@ -117,19 +300,6 @@ Wrapper for a form control
 		fill="#F7D4FF"
 	></path>
 </SVGBounce>
-```
-
-## `useFloatingEffect(opts: TweenedOpts, translateX: number)`
-
-### Example
-
-```html
-<script lang="ts">
-	import { useFloatingEffect } from '@theofficialurban/svelte-utils';
-	const { effect, store } = useFloatingEffect();
-</script>
-
-<svg use:effect="{$store}"></svg>
 ```
 
 ## Modal Async. Rendering `Modal`
@@ -159,14 +329,13 @@ Provides loading for a promise
 <script lang="ts">
 	import { Modal } from '@theofficialurban/svelte-utils';
 </script>
-
 // Slot: loading // Value = Promise Awaited Return
 <Modal.Wrapper {promise} let:value>
-	<span slot="loading">Loading....</span>
+	    <span slot="loading">Loading....</span>    
 	<Modal.List modal="{value" as ({name: string}[])}>
-		{#snippet children(item: {name: string})}
+		        {#snippet children(item: {name: string})}        
 		<li>{item.name}</li>
-		{/snippet}
+		        {/snippet}    
 	</Modal.List>
 </Modal.Wrapper>
 ```

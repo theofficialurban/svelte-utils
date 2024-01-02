@@ -9,9 +9,9 @@
 </script>
 
 {#if toggleHTML}
-	<div>
+	<slot name="preview">
 		{@html value}
-	</div>
+	</slot>
 {:else}
-	<textarea bind:value {...restProps} />
+	<slot><textarea bind:value {...restProps} /></slot>
 {/if}

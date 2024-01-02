@@ -1,13 +1,15 @@
+import type { FloatEffect } from '$lib/index.js';
+import type { Action } from 'svelte/action';
 import { tweened, type TweenedOptions } from 'svelte/motion';
 
-const useFloatingEffect = <T extends Element = Element>(
+const useFloatingEffect: FloatEffect = <T extends Element = Element>(
 	opts: TweenedOptions<number> = {
 		duration: 1000
 	},
 	floatDist: number = 10
 ) => {
 	const store = tweened(0, opts);
-	const actionFn = (node: T, bounceVal: number) => {
+	const actionFn: Action<T, number> = (node: T, bounceVal: number) => {
 		node.setAttribute('style', `transform: translateY(${bounceVal}px)`);
 		store.set(floatDist);
 		return {

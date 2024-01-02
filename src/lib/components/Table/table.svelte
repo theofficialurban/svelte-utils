@@ -9,40 +9,43 @@
 		columns: TableColumn<T>[];
 		cell: Snippet<{ row: T; column: TableColumn<T> }>;
 		cols: Snippet<TableColumn<T>>;
-		tableTitle?: Snippet<void>;
+		label?: Snippet<unknown>;
 	}
 	type Slots = {
 		default: unknown;
-		tableTitle?: string;
+		label?: Snippet<unknown>;
 		cell: Snippet<{ row: T; column: TableColumn<T> }>;
 		cols: Snippet<TableColumn<T>>;
 	};
-	let { rows, columns, cell, cols, children, tableTitle, ...restProps } =
+	let { rows, columns, cell, cols, children, label, ...restProps } =
 		$props<PropsWithChildren<$$props, Slots>>();
 </script>
 
-{#if tableTitle}
-	{@render tableTitle()}
+{#if label}
+	{@render label(null)}
 {/if}
 <table {...restProps}>
-	<thead>
-		<tr>
-			{#each columns as col}
-				{@render cols(col)}
-			{/each}
-		</tr>
-	</thead>
-	<tbody>
-		{#each rows as row}
+	<slot name="thead" {columns}>
+		<thead>
 			<tr>
 				{#each columns as col}
-					{@render cell({ row, column: col })}
+					{@render cols(col)}
 				{/each}
 			</tr>
-		{/each}
-	</tbody>
+		</thead>
+	</slot>
 
-	{#if children}
-		{@render children()}
-	{/if}
+	<slot>
+		<tbody>
+			{#each rows as row}
+				<tr>
+					{#each columns as col}
+						{@render cell({ row, column: col })}
+					{/each}
+				</tr>
+			{/each}
+		</tbody>
+	</slot>
+
+	<slot name="tfoot" />
 </table>

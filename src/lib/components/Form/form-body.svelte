@@ -5,13 +5,14 @@
 	import { enhance } from '$app/forms';
 
 	interface $$props extends HTMLFormAttributes {
-		form: ActionResult;
-		submitFn?: SubmitFunction;
+		form?: ActionResult | null;
+		submitFn?: SubmitFunction | undefined;
 	}
 
 	let {
-		form,
-		submitFn = async () => Promise.resolve(),
+		form = null,
+
+		submitFn = undefined,
 
 		...restProps
 	} = $props<$$props>();
